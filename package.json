@@ -1,0 +1,30 @@
+{
+  "name": "myblog_admin",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^6.0.1",
+    "dayjs": "^1.10.7",
+    "element-plus": "^1.2.0-beta.6",
+    "vue": "^3.2.20",
+    "vuex-along": "^1.2.13"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "@vitejs/plugin-vue": "^1.9.4",
+    "@vue/compiler-sfc": "^3.2.20",
+    "axios": "^0.24.0",
+    "sass": "^1.43.4",
+    "unplugin-vue-components": "^0.17.0",
+    "vite": "^2.6.13",
+    "vue-loaders": "^4.1.4",
+    "vue-router": "^4.0.10",
+    "vuex": "^4.0.2",
+    "vuex-along": "^1.2.13"
+  },
+  "license": "MIT"
+}
