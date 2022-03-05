@@ -1,134 +1,136 @@
 <template>
-  <el-row :gutter="15">
-    <el-col :span="6">
-      <el-card shadow="hover" class="count">
-        <template #header>
-          <span class="count-title">页面访问量</span>
-        </template>
-        <div class="count-body">
-          <span>{{ siteCount.today_pv }}</span>
-          <span>
+  <div class="main">
+    <el-row :gutter="15">
+      <el-col :span="6">
+        <el-card shadow="hover" class="count">
+          <template #header>
+            <span class="count-title">页面访问量</span>
+          </template>
+          <div class="count-body">
+            <span>{{ siteCount.today_pv }}</span>
+            <span>
             <p>比昨天</p>
             <p v-if="siteCount.compare_pv < 0" class="down">
               <el-icon><caret-bottom/></el-icon>{{ siteCount.compare_pv }}%</p>
             <p v-else class="up">
               <el-icon><caret-top/></el-icon>{{ siteCount.compare_pv }}%</p>
           </span>
-        </div>
-      </el-card>
-    </el-col>
-    <el-col :span="6">
-      <el-card shadow="hover" class="count">
-        <template #header>
-          <span class="count-title">访问用户数</span>
-        </template>
-        <div class="count-body">
-          <span>{{ siteCount.today_uv }}</span>
-          <span>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card shadow="hover" class="count">
+          <template #header>
+            <span class="count-title">访问用户数</span>
+          </template>
+          <div class="count-body">
+            <span>{{ siteCount.today_uv }}</span>
+            <span>
             <p>比昨天</p>
             <p v-if="siteCount.compare_uv < 0" class="down">
               <el-icon><caret-bottom/></el-icon>{{ siteCount.compare_uv }}%</p>
             <p v-else class="up">
               <el-icon><caret-top/></el-icon>{{ siteCount.compare_uv }}%</p>
           </span>
-        </div>
-      </el-card>
-    </el-col>
-    <el-col :span="6">
-      <el-card shadow="hover" class="count">
-        <template #header>
-          <span class="count-title">平均访问时长</span>
-        </template>
-        <div class="count-body">
-          <span>{{ siteCount.today_time }}</span>
-          <span>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card shadow="hover" class="count">
+          <template #header>
+            <span class="count-title">平均访问时长</span>
+          </template>
+          <div class="count-body">
+            <span>{{ siteCount.today_time }}</span>
+            <span>
             <p>比昨天</p>
             <p v-if="siteCount.compare_time < 0" class="down">
               <el-icon><caret-bottom/></el-icon>{{ siteCount.compare_time }}%</p>
             <p v-else class="up">
               <el-icon><caret-top/></el-icon>{{ siteCount.compare_time }}%</p>
           </span>
-        </div>
-      </el-card>
-    </el-col>
-    <el-col :span="6">
-      <el-card shadow="hover" class="count">
-        <template #header>
-          <span class="count-title">平均访问页数</span>
-        </template>
-        <div class="count-body">
-          <span>{{ siteCount.today_page }}</span>
-          <span>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card shadow="hover" class="count">
+          <template #header>
+            <span class="count-title">平均访问页数</span>
+          </template>
+          <div class="count-body">
+            <span>{{ siteCount.today_page }}</span>
+            <span>
             <p>比昨天</p>
             <p v-if="siteCount.compare_page < 0" class="down">
               <el-icon><caret-bottom/></el-icon>{{ siteCount.compare_page }}%</p>
             <p v-else class="up">
               <el-icon><caret-top/></el-icon>{{ siteCount.compare_page }}%</p>
           </span>
-        </div>
-      </el-card>
-    </el-col>
-    <el-col :span="15">
-      <el-card shadow="hover">
-        <template #header>
-          <span>浏量趋势</span>
-        </template>
-        <div id="trend" :style="{ 'min-height': '320px' }"></div>
-      </el-card>
-    </el-col>
-    <el-col :span="9">
-      <el-card shadow="hover">
-        <template #header>
-          <span>主机性能</span>
-        </template>
-        <div class="server-progress">
-          <p>CPU使用率</p>
-          <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.cpu_rate"
-                       :color="customColorMethod"/>
-          <p>系统负载(15分钟)</p>
-          <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.load_15"
-                       :color="customColorMethod"/>
-          <p>内存使用率</p>
-          <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.memory_rate"
-                       :color="customColorMethod"/>
-          <p>磁盘使用率</p>
-          <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.disk_rate"
-                       :color="customColorMethod"/>
-        </div>
-      </el-card>
-    </el-col>
-    <el-col :span="6">
-      <el-card shadow="hover">
-        <template #header>
-          <span>访客设备分布</span>
-        </template>
-        <div id="equipment" :style="{ 'min-height': '320px' }"></div>
-      </el-card>
-    </el-col>
-    <el-col :span="12">
-      <el-card shadow="hover">
-        <template #header>
-          <span>受访页面TOP5</span>
-        </template>
-        <!--        <div id="trend" :style="{ 'min-height': '320px' }"></div>-->
-      </el-card>
-    </el-col>
-    <el-col :span="6">
-      <el-card shadow="hover">
-        <template #header>
-          <span>访客地域分布</span>
-        </template>
-        <div id="area" :style="{ 'min-height': '320px' }"></div>
-      </el-card>
-    </el-col>
-  </el-row>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="15">
+        <el-card shadow="hover">
+          <template #header>
+            <span>浏量趋势</span>
+          </template>
+          <div id="trend" :style="{ 'min-height': '320px' }"></div>
+        </el-card>
+      </el-col>
+      <el-col :span="9">
+        <el-card shadow="hover">
+          <template #header>
+            <span>主机性能</span>
+          </template>
+          <div class="server-progress">
+            <p>CPU使用率</p>
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.cpu_rate"
+                         :color="customColorMethod"/>
+            <p>系统负载率(15分钟)</p>
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.load_15"
+                         :color="customColorMethod"/>
+            <p>内存使用率</p>
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.memory_rate"
+                         :color="customColorMethod"/>
+            <p>磁盘使用率</p>
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.disk_rate"
+                         :color="customColorMethod"/>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card shadow="hover">
+          <template #header>
+            <span>访客设备分布</span>
+          </template>
+          <div id="equipment" :style="{ 'min-height': '320px' }"></div>
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card shadow="hover">
+          <template #header>
+            <span>受访页面TOP5</span>
+          </template>
+          <div id="page" :style="{ 'min-height': '320px' }"></div>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card shadow="hover">
+          <template #header>
+            <span>访客地域分布</span>
+          </template>
+          <div id="area" :style="{ 'min-height': '320px' }"></div>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 <script setup>
 import {onMounted, reactive, ref} from "vue";
 import {CaretBottom, CaretTop} from "@element-plus/icons-vue"
 import {getServerCount, getSiteCount, getSiteEcharts} from "@/api/home";
 import * as echarts from 'echarts'
-import * as china from "@/assets/echarts-china.js"
+import china from "@/assets/china.json"
 // 数据统计
 const siteCount = reactive({})
 
@@ -159,17 +161,16 @@ const customColorMethod = (percentage) => {
 }
 // echarts曲线颜色
 const color = ref([
-  '#c22931',
-  '#e8ad29',
+  "#3498db",
+  "#f1c40f",
+  "#2ecc71",
+  "#f2b3c9",
+  "#16a085",
+  "#e67e22",
   '#008dd0',
-  '#157623',
-  '#00549d',
-  '#08919d',
-  '#009a7c',
+  '#c22931',
   '#8e44ad',
-  '#2ecc71',
-  '#f39c12',
-  '#e74c3c'
+  '#157623',
 ])
 
 // 流量趋势折线图
@@ -197,7 +198,7 @@ async function trend() {
   myChart = echarts.init(document.getElementById("trend"));
   // 绘制图表
   myChart.setOption({
-    color: color.value,
+    // color: color.value,
     tooltip: {
       trigger: 'axis',
       axisPointer: {
@@ -296,6 +297,7 @@ async function trend() {
     myChart.resize();
   };
 }
+
 // 浏览设备饼图
 async function equipment() {
   const query = {chart: 'equipment'}
@@ -332,26 +334,143 @@ async function equipment() {
     myChart.resize();
   };
 }
-// 访问用户地图
-async function area() {
-  const query = {chart: 'area'}
+
+// 入口页统计
+async function page() {
+  const query = {chart: 'page'}
   const chartData = await getSiteEcharts(query)
-  console.log("area", chartData)
+  console.log("page", chartData)
+  const url = []
+  const pv = []
+  const uv = []
+  const in_count = []
+  const time = []
+  for (let i in chartData) {
+    // console.log(chartData[i].url)
+    if (chartData[i].url !== '（已屏蔽）') {
+      console.log(chartData[i].url)
+      url.push(chartData[i].url)
+      pv.push(chartData[i].pv)
+      uv.push(chartData[i].uv)
+      in_count.push(chartData[i].in_count)
+      time.push(chartData[i].time)
+    }
+  }
+  console.log(url)
   let myChart;
-  myChart = echarts.init(document.getElementById("area"));
+  myChart = echarts.init(document.getElementById("page"));
   // 绘制图表
   myChart.setOption({
     color: color.value,
     tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow',
+        label: {
+          formatter: function (params) {
+            return params.value;
+          }
+        }
+      },
+    },
+    legend: {
+      data: ['浏览量', '访问数', '停留时长', '入口页次数']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      // data: url,
+      data: ['pc-/','m-/','m-/detail/article/39','m-/detail/article/38','pc-/detail/article/38'],
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        name: '浏览量',
+        type: 'bar',
+        stack: 'total',
+        emphasis: {
+          focus: 'series'
+        },
+        data: pv
+      },
+      {
+        name: '访问数',
+        type: 'bar',
+        stack: 'total',
+        emphasis: {
+          focus: 'series'
+        },
+        data: uv
+      },
+      {
+        name: '停留时长',
+        type: 'bar',
+        stack: 'total',
+        emphasis: {
+          focus: 'series'
+        },
+        data: time
+      },
+      {
+        name: '入口页次数',
+        type: 'bar',
+        stack: 'total',
+        emphasis: {
+          focus: 'series'
+        },
+        data: in_count
+      }
+    ]
+  });
+  //自适应大小
+  window.onresize = function () {
+    myChart.resize();
+  };
+}
+
+// 访问用户地图
+async function area() {
+  const query = {chart: 'area'}
+  let chartData = await getSiteEcharts(query)
+  console.log("area", chartData)
+  let max = 0
+  let sum = 0
+  for (let i in chartData) {
+    sum = sum + chartData[i].value
+    if (max < chartData[i].value) {
+      max = chartData[i].value
+    }
+  }
+  echarts.registerMap('china', china)
+  let myChart;
+  myChart = echarts.init(document.getElementById("area"));
+  myChart.setOption({
+    color: color.value,
+    tooltip: {
       trigger: 'item',
-      formatter: '{b}<br/>{a}:{c}'
+      formatter: function (params) {
+        let number
+        if (!params.value) {
+          number = 0
+        } else {
+          number = params.value
+        }
+        return params.name + '<br/>浏览量&nbsp;' + number + '<br/>占比&nbsp;' + ((number / sum) * 100).toFixed(2) + '%'
+      }
     },
     visualMap: {
       min: 0,
-      max: 1097,
+      max: max,
       left: 'left',
       top: 'bottom',
-      text: ['高', '低'],           // 文本，默认为数值文本
+      text: ['高', '低'],
       calculable: true,
       inRange: {
         color: ['lightskyblue', 'yellow', 'orangered']
@@ -361,16 +480,8 @@ async function area() {
       {
         name: '浏览量',
         type: 'map',
-        mapType: 'china',
+        map: 'china',
         roam: false,
-        label: {
-          normal: {
-            show: false
-          },
-          emphasis: {
-            show: true
-          }
-        },
         data: chartData
       }
     ]
@@ -378,20 +489,22 @@ async function area() {
   //自适应大小
   window.onresize = function () {
     myChart.resize();
-  };
+  }
 }
+
 onMounted(() => {
   getSiteCountData()
   getServerCountData()
   trend()
   equipment()
-  // area()
+  page()
+  area()
 })
 </script>
 
 <style scoped lang="scss">
-h1 {
-  color: var(--color-text);
+.main{
+  padding: 15px;
 }
 
 :deep(.el-card__header) {
