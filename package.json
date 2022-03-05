@@ -12,7 +12,10 @@
     "dayjs": "^1.10.7",
     "echarts": "^5.3.0",
     "element-plus": "^1.2.0-beta.6",
+    "qiniu-js": "^3.4.0",
     "vue": "^3.2.20",
+    "vue-clipboard3": "^1.0.1",
+    "vue-cropper": "^1.0.2",
     "vuex-along": "^1.2.13"
   },
   "devDependencies": {
