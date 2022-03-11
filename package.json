@@ -28,8 +28,6 @@
     "vite": "^2.6.13",
     "vue-loaders": "^4.1.4",
     "vue-router": "^4.0.10",
-    "vuex": "^4.0.2",
-    "vuex-along": "^1.2.13"
-  },
-  "license": "MIT"
+    "vuex": "^4.0.2"
+  }
 }

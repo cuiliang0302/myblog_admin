@@ -1,5 +1,5 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
-
+import store from '@/store/index'
 const router = createRouter({
 	history: createWebHashHistory(),  // hash模式，
 	// history: createWebHistory('/static/dist'),  //h5模式createWebHistory
@@ -24,5 +24,10 @@ const router = createRouter({
 			component: () => import('@/views/Image.vue')
 		}
 	]
+})
+// 路由导航守卫
+router.beforeEach((to, from, next) => {
+	store.commit('setMessageShow',false)
+	next()
 })
 export default router;

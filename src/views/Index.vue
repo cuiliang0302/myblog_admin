@@ -346,17 +346,22 @@ async function page() {
   const in_count = []
   const time = []
   for (let i in chartData) {
-    // console.log(chartData[i].url)
-    if (chartData[i].url !== '（已屏蔽）') {
-      console.log(chartData[i].url)
-      url.push(chartData[i].url)
-      pv.push(chartData[i].pv)
-      uv.push(chartData[i].uv)
-      in_count.push(chartData[i].in_count)
-      time.push(chartData[i].time)
+    let type
+    if (chartData[i].url.includes("m.cuiliangblog")) {
+      type = '桌面端'
+    } else {
+      type = '移动端'
     }
+    if (chartData[i].url.split('#')[1]){
+      url.push(type+'-'+chartData[i].url.split('#')[1])
+    }else{
+      url.push(type+'-/')
+    }
+    pv.push(chartData[i].pv)
+    uv.push(chartData[i].uv)
+    in_count.push(chartData[i].in_count)
+    time.push(chartData[i].time)
   }
-  console.log(url)
   let myChart;
   myChart = echarts.init(document.getElementById("page"));
   // 绘制图表
@@ -384,8 +389,7 @@ async function page() {
     },
     xAxis: {
       type: 'category',
-      // data: url,
-      data: ['pc-/','m-/','m-/detail/article/39','m-/detail/article/38','pc-/detail/article/38'],
+      data: url,
     },
     yAxis: {
       type: 'value'
@@ -503,7 +507,7 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-.main{
+.main {
   padding: 15px;
 }
 

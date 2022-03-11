@@ -78,7 +78,7 @@
 
 <script setup>
 import {Edit, Plus, Delete, CircleCloseFilled} from '@element-plus/icons-vue'
-import {onMounted, reactive, ref} from 'vue'
+import {computed, onMounted, reactive, ref} from 'vue'
 import {
   deleteCatalogue,
   getCatalogueList,
@@ -88,6 +88,7 @@ import {
   putCatalogueList
 } from "@/api/directory";
 import {ElMessage} from "element-plus";
+import store from "@/store";
 // 选择笔记表单
 const form = reactive({
   'note': ''
@@ -297,6 +298,8 @@ const catalogReset = () => {
 }
 onMounted(() => {
   getNoteData()
+  const messageShow = computed(() => store.state.messageShow)
+  console.log(messageShow)
 })
 </script>
 <style scoped lang="scss">
