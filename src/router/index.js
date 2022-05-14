@@ -27,7 +27,6 @@ const router = createRouter({
 })
 // 路由导航守卫
 router.beforeEach((to, from, next) => {
-	store.commit('setMessageShow',false)
 	next()
 })
 export default router;

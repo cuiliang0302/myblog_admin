@@ -14,4 +14,7 @@ npm run dev
 ```
 npm run build
 ```
+## 注意事项
+dev模式request.js填写token
 
+prod模式注释token，使用cookie

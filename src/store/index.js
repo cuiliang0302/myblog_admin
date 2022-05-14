@@ -13,7 +13,7 @@ export default new Vuex.Store({
 				list: [],
 			},
 			session: {
-				list: ["messageShow"],
+				list: [],
 			}
 		})
 	]
