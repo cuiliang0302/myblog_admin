@@ -6,8 +6,8 @@ export function getSiteCount() {
 }
 
 // 获取服务器性能统计
-export function getServerCount() {
-	return index.get('/management/serverCount/')
+export function getServerMonitoring() {
+	return index.get('/management/serverMonitoring/')
 }
 
 // 获取echarts数据

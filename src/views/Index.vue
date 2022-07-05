@@ -84,16 +84,16 @@
           </template>
           <div class="server-progress">
             <p>CPU使用率</p>
-            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.cpu_rate"
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverMonitoring.cpu_rate"
                          :color="customColorMethod"/>
             <p>系统负载率(15分钟)</p>
-            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.load_15"
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverMonitoring.load_15"
                          :color="customColorMethod"/>
             <p>内存使用率</p>
-            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.memory_rate"
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverMonitoring.memory_rate"
                          :color="customColorMethod"/>
             <p>磁盘使用率</p>
-            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverCount.disk_rate"
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="serverMonitoring.disk_rate"
                          :color="customColorMethod"/>
           </div>
         </el-card>
@@ -128,7 +128,7 @@
 <script setup>
 import {onMounted, reactive, ref} from "vue";
 import {CaretBottom, CaretTop} from "@element-plus/icons-vue"
-import {getServerCount, getSiteCount, getSiteEcharts} from "@/api/home";
+import {getServerMonitoring, getSiteCount, getSiteEcharts} from "@/api/home";
 import * as echarts from 'echarts'
 import china from "@/assets/china.json"
 // 数据统计
@@ -141,12 +141,12 @@ async function getSiteCountData() {
 }
 
 // 服务器性能
-const serverCount = reactive({})
+const serverMonitoring = reactive({})
 
 // 获取服务器性能数据
-async function getServerCountData() {
-  Object.assign(serverCount, await getServerCount())
-  console.log("serverCount", serverCount)
+async function getserverMonitoringData() {
+  Object.assign(serverMonitoring, await getServerMonitoring())
+  console.log("serverMonitoring", serverMonitoring)
 }
 
 // 进度条颜色
@@ -498,7 +498,7 @@ async function area() {
 
 onMounted(() => {
   getSiteCountData()
-  getServerCountData()
+  getserverMonitoringData()
   trend()
   equipment()
   page()

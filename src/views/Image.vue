@@ -32,8 +32,8 @@
           ></el-image>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="copyUrl">复制图片地址</el-button>
-          <el-button @click="cancel">取消</el-button>
+          <el-button type="primary" @click="copyUrl" size="large">复制图片地址</el-button>
+          <el-button @click="cancel" size="large">取消</el-button>
         </el-form-item>
       </el-form>
     </el-card>

@@ -6,7 +6,7 @@
                :on-change="uploadChange"
                :show-file-list="false"
     >
-      <el-button class="upload-btn">
+      <el-button class="upload-btn" size="large">
         <MyIcon class="upload-icon" type="icon-upload-img"/>
         <p>选择图片</p>
       </el-button>
